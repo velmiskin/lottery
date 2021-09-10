@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin panel{% endblock %}
+
+{% block body %}
+
+    <h3>List of Participants</h3>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in participants %}
+        <tr>
+            <td>{{ p.salutation.title }}{{ p.firstName }}</td>
+            <td>{{ p.lastName }}</td>
+            <td>{{ p.email }}</td>
+            <td>{{ p.status.name }}</td>
+            <td><a href="admin/edit/{{ p.id }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
