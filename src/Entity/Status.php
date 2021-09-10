@@ -43,11 +43,6 @@ class Status
      */
     private $isDefault;
 
-    public function __construct()
-    {
-        $this->participants = new ArrayCollection();
-    }
-
     public function getId(): ?UuidInterface
     {
         return $this->id;
