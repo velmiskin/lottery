@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\StatusRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
@@ -21,27 +19,27 @@ class Status
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mailSubject;
+    private string $mailSubject;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mailBody;
+    private string $mailBody;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDefault;
+    private bool $isDefault;
 
     public function getId(): ?UuidInterface
     {
