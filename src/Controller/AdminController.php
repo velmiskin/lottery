@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
+use App\Event\ParticipantStatusChangeEvent;
 use App\Form\AdminParticipantFormType;
 use App\Repository\ParticipantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class AdminController extends AbstractController
 {
@@ -21,7 +23,8 @@ class AdminController extends AbstractController
         ]);
     }
     #[Route('/admin/edit/{id}', name: 'admin.edit')]
-    public function edit(Participant $participant, Request $request): Response
+    public function edit(Participant $participant, EventDispatcherInterface $eventDispatcher,
+                         Request $request): Response
     {
         $form = $this->createForm(AdminParticipantFormType::class, $participant);
         $form->handleRequest($request);
@@ -30,7 +33,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($participant);
             $entityManager->flush();
-
+            $eventDispatcher->dispatch(new ParticipantStatusChangeEvent($participant->getId()), 'status.change');
             return $this->redirectToRoute('admin.index');
         }
 
