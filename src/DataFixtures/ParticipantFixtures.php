@@ -3,8 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Participant;
-use App\Repository\SalutationRepository;
-use App\Repository\StatusRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
