@@ -19,12 +19,12 @@ class Salutation
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @ORM\Column(type="string", length=32)
      */
-    private $title;
+    private string $title;
 
     public function getId(): UuidInterface
     {

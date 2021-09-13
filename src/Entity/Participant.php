@@ -19,34 +19,34 @@ class Participant
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="participants")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $status;
+    private ?Status $status;
 
     /**
      * @ORM\ManyToOne(targetEntity=Salutation::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $salutation;
+    private ?Salutation $salutation;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
+    private string $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    private string $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private string $email;
 
     public function getId(): UuidInterface
     {

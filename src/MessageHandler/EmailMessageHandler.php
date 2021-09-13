@@ -7,6 +7,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class EmailMessageHandler implements MessageHandlerInterface, LoggerAwareInterface
 {
@@ -16,7 +17,7 @@ class EmailMessageHandler implements MessageHandlerInterface, LoggerAwareInterfa
 
     /**
      * @param EmailMessage $email
-     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function __invoke(EmailMessage $email)
     {
@@ -24,6 +25,9 @@ class EmailMessageHandler implements MessageHandlerInterface, LoggerAwareInterfa
         $this->logger->info('Email send!');
     }
 
+    /**
+     * @param LoggerInterface $logger
+     */
     public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
