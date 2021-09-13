@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ParticipantController extends AbstractController
 {
-    #[Route('/participant', name: 'participant')]
+    #[Route('/', name: 'participant')]
     public function index(Request $request, StatusRepository $statusRepository): Response
     {
         $form = $this->createForm(ParticipantFormType::class);

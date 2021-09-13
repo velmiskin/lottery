@@ -9,11 +9,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index(): Response
-    {
-        return $this->render('public/index.html.twig');
-    }
+    //
 }
