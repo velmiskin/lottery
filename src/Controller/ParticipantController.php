@@ -25,7 +25,7 @@ class ParticipantController extends AbstractController
             $entityManager->persist($participant);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('thank-you');
         }
         return $this->render('participant/index.html.twig', [
             'form' => $form->createView(),
